@@ -476,85 +476,83 @@ pelicula_8 = {
     "asientos disponibles sabado21:15": asientos_p8_sabado_21_15, #asientos disponibles del dia y la hota de la peli
 }
 
-#-----------------------------------------------------------------------------------------------------------------------------------------------
 
-print("BIENVENIDO A LA PÁGINA DEL CINE MUNDO S.A") #da la bienvenida a la pagina, a la parte principal
+# --- SISTEMA DE RESERVA DE PELÍCULAS ---
 
-n=1 #Contador de intentos
-pregunta= input("¿Está registrado en esta página?: ").lower()#Le preguntamos al usuario si esta registrado y usamos .lower para convertir a minusculas
-cuentas= {"yesickrivera@gmail.com":"123"} #Diccionario con las cuentas registradas (correo,contraseña)
-nombres_usuarios={"yesickrivera@gmail.com":"Yesi"} #nombre de los usuarios
-boleta_valor=10000 #valor del tiket para ver la peli
 
-if pregunta=="si": #si la respuesta a la pregunta es igualita a "si"
-    while n<=3:#si el numero de intentos faliidos es mayor a 3 sera un error
-        try:#el try sirve para evitar que el programa se detenga si hay un error 
-            usuario= input("Ingresé su usuario (correo electronico): ") #aqui el usuario debe ingresar su correo electronico si no esta registrado 
-            contraseña= input("Ingresé su contraseña: ") ##aqui el usuario debe ingresar su contraseña si no esta registrado 
-            if contraseña==cuentas[usuario]:
-                print(f"Bienvenido a su cuenta {nombres_usuarios[usuario]}") # Da la bienvenida al usuario mostrando su nombre registrado.
-                break  # Sale del ciclo porque ya ingresó correctamente.
-            elif contraseña!=cuentas[usuario]:  # Verifica si la contraseña no coincide con la almacenada.
-                print("Contraseña incorrecto")  # Informa al usuario que la contraseña es incorrecta.
-            else:  # Si ocurre otra condición diferente.
-                print("No se pudo ingresar a su cuenta")  # Mensaje de error genérico.
-            n+=1  # Suma 1 a los intentos de ingreso.
-        except KeyError:  # Maneja el error si el correo (usuario) no existe en el diccionario de cuentas.
-            if n<3:  # Si aún no ha superado el número de intentos permitidos.
-                print("Correo incorrecto")  # Informa que el correo no está registrado.
-                n+=1  # Aumenta el contador de intentos.
-            else:  # Si ya se superó el límite de intentos.
-                print("No se pudo ingresar a su cuenta")  # Informa que no pudo ingresar.
-                break  # Termina el ciclo de intentos.
-else:  # Si el usuario no tenía cuenta previamente (flujo de registro).
-    while True:  # Inicia ciclo para registrar cuenta.
-        nombre=input("Ingrese un apodo o su nombre (Por este se le llamará): ")  # Solicita nombre o apodo al usuario.
-        usuario= input("Ingresé un correo electronico será su usuario : ")  # Pide un correo para registrarlo como usuario.
-        contraseña= input("Ingresé una contraseña: ")  # Solicita una contraseña para la cuenta.
-        cuentas[usuario]=contraseña  # Guarda el correo y contraseña en el diccionario "cuentas".
-        nombres_usuarios[usuario]=nombre  # Asocia el usuario con su nombre en el diccionario "nombres_usuarios".
-        print(f"\nFELICIDADES, su cuenta a sido creada con éxito,{nombres_usuarios[usuario]}  \n Volvera a la página de ingreso donde beberá ingresar su usuario y contraseña")  
-        # Mensaje de confirmación de creación de cuenta y aviso de que debe volver a ingresar.
+peliculas = {
+    1: pelicula_1,
+    2: pelicula_2,
+    3: pelicula_3,
+    4: pelicula_4,
+    5: pelicula_5,
+    6: pelicula_6
+}
 
-        while n<=3: # Permite hasta 3 intentos de ingreso después de crear la cuenta.
-            try:  
-                print("?\n BENVENIDO A LA PÁGINA DEL CINE MUNDO S.A")  # Mensaje de bienvenida al sistema del cine.
-                usuario= input("Ingresé su usuario (correo electronico): ")  # Pide el correo registrado.
-                contraseña= input("Ingresé su contraseña: ")  # Pide la contraseña asociada al correo.
-                if contraseña==cuentas[usuario]:  # Verifica si la contraseña coincide con la registrada.
-                    print(f"Bienvenido a su cuenta {nombres_usuarios[usuario]}")  # Da la bienvenida usando el nombre registrado.
-                    while True:  # Menú principal de acciones del cine.
-                        try:
-                            print("1.Ver cartelera \n 2.Hacer reserva \n 3.Consultar sillas disponibles \n 4.Salir")  
-                            # Muestra el menú con las opciones disponibles.
-                            pregunta_2= int(input("Ingresé el número correspondiente de la acción que desea realizar"))  
-                            # Solicita al usuario que seleccione una opción.
-                        except ValueError:  # Maneja el error si se ingresa un valor que no es número.
-                            print("Por favor Ingrése un NÚMERO")  # Informa al usuario del error.
-                            if pregunta_2==1:  # Si eligió opción 1: ver cartelera.
-                                print(f"Las películas disponibles son: \n {pelicula_1[nombre]} \n duración: {pelicula_1['duracion']} \n Sinopsis: {pelicula_1['sinopsis']} \n {pelicula_2[nombre]} \n duración: {pelicula_2['duracion']} \n Sinopsis: {pelicula_2['sinopsis']} \n {pelicula_3[nombre]} \n duración: {pelicula_3['duracion']} \n Sinopsis: {pelicula_3['sinopsis']} \n {pelicula_4[nombre]} \n duración: {pelicula_4['duracion']} \n Sinopsis: {pelicula_4['sinopsis']} \n {pelicula_5[nombre]} \n duración: {pelicula_5['duracion']} \n Sinopsis: {pelicula_5['sinopsis']} \n {pelicula_6[nombre]} \n duración: {pelicula_6['duracion']} \n Sinopsis: {pelicula_6['sinopsis']} \n {pelicula_7[nombre]} \n duración: {pelicula_7['duracion']} \n Sinopsis: {pelicula_7['sinopsis']} \n {pelicula_8[nombre]} \n duración: {pelicula_8['duracion']} \n Sinopsis: {pelicula_8['sinopsis']}")  
-                                # Imprime la cartelera completa con nombre, duración y sinopsis de todas las películas.
-                            elif pregunta_2==2:  # Si elige la opción 2: hacer reserva.
-                                print(f"RESERVAR \n Las películas disponibles son: \n {pelicula_1[nombre]} \n {pelicula_2[nombre]} \n {pelicula_3[nombre]} \n {pelicula_4[nombre]} \n {pelicula_5[nombre]} \n {pelicula_6[nombre]} \n {pelicula_7[nombre]} \n {pelicula_8[nombre]} \n la boleta tinene un valor de: {boleta_valor} COP")  
-                                # Muestra todas las películas y el valor de la boleta.
-                                pregunta_3=input("Ingresé el nombre de la película que desea ver: ").lower()  
-                                # Pide al usuario escribir el nombre de la película.
-                                if pregunta_3==pelicula_1 [nombre]:  # Verifica si coincide con la película 1.
-                                    print(f"Los días disponibles para ver la pelicula son: {pelicula_1[dias_p1]}")  
-                                    # Muestra los días disponibles de esa película.
-                                    pregunta_4= input("¿Qué día desea ver la película?: ").lower()  
-                                    # Pide elegir el día para la función.
-                                    if pregunta_4 == pelicula_1 [nombre]:
-                                       print()
-                elif contraseña!=cuentas[usuario]:  # Si la contraseña no coincide.
-                    print("Contraseña incorrecta")  # Informa al usuario.
-                else:  # En otro caso.
-                    print("No se pudo ingresar a su cuenta")  # Mensaje de error genérico.
-                    n+=1  # Suma intento fallido.
-            except KeyError:  # Maneja error si el correo no existe en las cuentas.
-                if n<3:  # Si tiene intentos disponibles.
-                    print("Correo incorrecto")  # Informa que no existe el correo.
-                    n+=1  # Aumenta el contador.
-                else:  # Si superó el límite.
-                    print("No se pudo ingresar a su cuenta")  # Error final.
-                    break  # Sale del ciclo.
+seguir = True
+while seguir == True:
+    print("")
+    print("=== SISTEMA DE RESERVA DE PELÍCULAS ===")
+    print("1.", peliculas[1]["nombre de la pelicula"])
+    print("2.", peliculas[2]["nombre de la pelicula"])
+    print("3.", peliculas[3]["nombre de la pelicula"])
+    print("4.", peliculas[4]["nombre de la pelicula"])
+    print("5.", peliculas[5]["nombre de la pelicula"])
+    print("6.", peliculas[6]["nombre de la pelicula"])
+    print("7.", peliculas[7]["nombre de la pelicula"])
+    print("8.", peliculas[8]["nombre de la pelicula"])
+    print("0. Salir")
+
+    opcion = input("Elige el número de la película: ")
+
+    if opcion == "0":
+        print("Gracias por usar el sistema.")
+        seguir = False
+    elif opcion in ["1","2","3","4","5","6","7","8"]:
+        peli = peliculas[int(opcion)]
+        print("")
+        print("Has elegido:", peli["nombre de la pelicula"])
+        print("Días disponibles:")
+        for d in peli["dias disponibles"]:
+            print("-", d)
+
+        dia = input("Escribe el día: ").lower().strip()
+        clave_horas = "horas de la pelicula " + dia
+        if clave_horas in peli:
+            print("Horarios disponibles:")
+            for h in peli[clave_horas]:
+                print("-", h)
+            hora = input("Escribe la hora exacta (ej 16:00): ").strip()
+
+            clave_asientos = "asientos disponibles " + dia + " " + hora
+            if clave_asientos in peli:
+                asientos = peli[clave_asientos]
+                if len(asientos) == 0:
+                    print("No quedan asientos para esa función.")
+                else:
+                    print("Asientos disponibles:")
+                    for a in asientos:
+                        print(a, end=" ")
+                    print("")
+                    asiento = input("Escribe el número de asiento que quieres: ")
+                    if asiento.isdigit():
+                        asiento = int(asiento)
+                        if asiento in asientos:
+                            confirmar = input("¿Confirmas la reserva del asiento " + str(asiento) + "? (s/n): ").lower()
+                            if confirmar == "s":
+                                asientos.remove(asiento)
+                                peli[clave_asientos] = asientos
+                                print("Reserva confirmada. Asiento", asiento, "para", peli["nombre de la pelicula"], "el", dia, "a las", hora)
+                            else:
+                                print("Reserva cancelada.")
+                        else:
+                            print("Ese asiento ya fue reservado o no existe.")
+                    else:
+                        print("Debes escribir un número de asiento.")
+            else:
+                print("No existe esa función a esa hora.")
+        else:
+            print("Ese día no está disponible.")
+    else:
+        print("Opción no válida.")
+
