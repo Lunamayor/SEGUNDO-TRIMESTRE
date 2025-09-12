@@ -443,6 +443,7 @@ asientos_p8_sabado_21_15 = [14, 35, 48, 20, 31, 2, 37, 11]  #asientos disponible
 # diccionario donde se muestra las horas y salas de todos los dias disponibles
 pelicula_8 = {
     "nombre de la pelicula": "TURNING RED", #nombre de la pelicula
+    "sinopsis":" Mei Lee, una niña de 13 años un poco rara pero segura de sí misma, que se debateentre seguir siendo la hija obediente que su madre quiere que sea y el caos de la adolescencia.",
 
     "dias disponibles": dias_p8, #dias disponibles de la peli
 
