@@ -727,7 +727,7 @@ while True:
                 for i in range(len(reservas)):
                     if reservas[i][0]==nombres_usuarios[usuario]:
                         reservass.append(reservas[i])
-                if len(reservass)==0:
+                if len(reservass)== '50':
                     print("No tiene reservas")
                 else:
                     for i in range(len(reservass)):
